@@ -2,17 +2,24 @@ from lxml import html
 from bs4 import BeautifulSoup
 import requests
 
+from db_conn import conn_db
 
-def getGr():
+def scrape_insert_groups():
     URL = "https://www.nticrabat.com/"
     r = requests.get(URL)
     soup=BeautifulSoup(r.content,'html5lib')
     select= BeautifulSoup(str(soup.find('select', { "id" : "coursera-front-search-banner-input" })), 'html5lib')
-    grList=[]
-    for i in select.find_all('option')[1:]:
-        # print(i.text,i.attrs['value'])
-        grList.append({'id':i.attrs['value'],'value':i.text})
-    # print(grList)
-    return grList
+    # grList=[]
+    db=conn_db()
+    if db != None:
+        groups = db["groups"]
+        for i in select.find_all('option')[1:]:
+            # print(i.text,i.attrs['value'])
+            db.groups.insert_one({'name':i.attrs['value'],'value':i.text})
+            # grList.append({'id':i.attrs['value'],'value':i.text})
+    else:
+        print('Error')
+           
+        
 if __name__ == "__main__":
-    getGr()
+    scrape_insert_groups()
