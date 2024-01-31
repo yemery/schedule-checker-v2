@@ -3,12 +3,14 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from deepdiff import DeepDiff
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
 def scheduleScraper(group):
     payload={
             'groupe':f'{group}',
         }
-    URL = "https://www.nticrabat.com/emploi/emp.php"
+    URL = os.getenv('URL')
     r = requests.get(URL,params=payload)
     soup = BeautifulSoup(r.content, 'html5lib') 
     table = BeautifulSoup(str(soup.find_all('table')[-1]), 'html5lib')
