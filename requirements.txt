@@ -1,0 +1,7 @@
+pymongo
+python-dotenv
+undetected-chromedriver
+selenium
+requests
+beautifulsoup4
+deepdiff
