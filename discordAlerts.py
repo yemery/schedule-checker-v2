@@ -1,6 +1,8 @@
 import requests
 from dotenv import load_dotenv
 import os
+import datetime
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 CHANNEL_ID = os.getenv('CHANNEL_ID')
@@ -8,13 +10,16 @@ CHANNEL_ID = os.getenv('CHANNEL_ID')
 url = f'https://discord.com/api/v10/channels/{CHANNEL_ID}/messages'
 headers = {
     'Authorization': f'Bot {TOKEN}',
+   
 }
 
-def sendAlert():
+def sendAlert(group,message):
+    imagePath=f"screenshots/{group}.png"
+    
     data = {
-    'content': 'Hello, Discord!',
+    'content': f"Attention <@&{1204527772635242496}>:\n {datetime.datetime.now()} \n The schedule has been updated. ",
     }
-    files = {'file': ('discrod/214.png', open('discord/214.png', 'rb'), 'image/png')}
+    files = {'file': (imagePath, open(imagePath, 'rb'), 'image/png')}
 
     response = requests.post(url, headers=headers, data=data,files=files)
 
@@ -25,5 +30,5 @@ def sendAlert():
 
 
 
-if __name__ == "__main__":
-    sendAlert()
+# if __name__ == "__main__":
+#     sendAlert(219)

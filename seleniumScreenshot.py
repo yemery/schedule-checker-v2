@@ -11,9 +11,15 @@ def screenshotSchedule(group):
     driver = uc.Chrome(options=chrome_options)
     url=f"{os.getenv('URL')}?groupe={group}"
     driver.get(url)
-    path=f"screenshots/{group}.png"
+    
+    folder_path="screenshots"
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+   
+    path=f"{folder_path}/{group}.png"
     driver.get_screenshot_as_file(path)
     driver.quit()
     
 # if __name__ == "__main__":
-#     screenshotSchedule(214)
+#     screenshotSchedule(219)
+    
