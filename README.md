@@ -6,12 +6,12 @@ The Schedule Checker project consists of several Python scripts that perform var
 
 ## Scripts
 
-- **[db.py](db.py)**: Establishes a connection to MongoDB to store schedule data.
-- **[seleniumscreenshot.py](seleniumscreenshot.py)**: Utilizes Selenium to take screenshots of schedule webpages.
-- **[scheduleChecker.py](schedulechecker.py)**: Checks for schedule changes, scrapes schedules, and sends alerts.
-- **[dsAlert.py](dsalert.py)**: Sends alerts to Discord channels when schedule changes are detected.
-- **[utils.py](utils.py)**: Contains utility functions for scraping schedules and computing differences.
-- **[main.py](main.py)**: Entry point script to execute the schedule checking process.
+- **[dbConn.py]**: Establishes a connection to MongoDB to store schedule data.
+- **[seleniumScreenshot.py]**: Utilizes Selenium to take screenshots of schedule webpages.
+- **[scheduleChecker.py]**: Checks for schedule changes, scrapes schedules, and sends alerts.
+- **[discordAlerts.py]**: Sends alerts to Discord channels when schedule changes are detected.
+- **[utils.py]**: Contains utility functions for scraping schedules and computing differences.
+- **[main.py]**: Entry point script to execute the schedule checking process.
 
 ## Installation and Setup
 
@@ -31,7 +31,6 @@ To install the necessary dependencies, run the following command in your termina
 
 ```
 pip install -r requirements.txt
-
 ```
 
 ### Configuration
@@ -46,7 +45,6 @@ To execute the schedule checker, run the `main.py` script:
 
 ```
 py main.py
-
 ```
 
 ## Contributing
