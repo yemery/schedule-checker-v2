@@ -12,7 +12,6 @@ def scheduleChecker():
         groups=db.groups.find()
         for group in groups:
             groupName=group['name']
-          
             scrapedSchedule=scheduleScraper(groupName)
             diffDictChecker=dict_diff(db.schedules.find_one({"groupeName": f"{groupName}"},{"classes":1,'_id':0}).get('classes'),scrapedSchedule)
             print(diffDictChecker)

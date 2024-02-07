@@ -55,49 +55,5 @@ def dict_diff(dataset1,dataset2):
 def classStatus(bgColor):
     pass
 
-def conn_db():
-    try:   
-        client = MongoClient(os.getenv("MongoDB_URI"))
-        db = client[os.getenv("db_name")]
 
-        return db
-    except Exception as e:
-            print(f"Error : {e}")
-            return None
-        
-        
-TOKEN = os.getenv('DISCORD_TOKEN')
-CHANNEL_ID = os.getenv('CHANNEL_ID')
-
-url = f'https://discord.com/api/v10/channels/{CHANNEL_ID}/messages'
-headers = {
-    'Authorization': f'Bot {TOKEN}',
-   
-}
-def screenshotSchedule(group):
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')  
-    driver = uc.Chrome(options=chrome_options)
-    url=f"{os.getenv('URL')}?groupe={group}"
-    driver.get(url)
-    path=f"selenium_Images/screenshots/{group}.png"
-    driver.get_screenshot_as_file(path)
-    driver.quit()
-    
-    
-def sendAlert(group):
-    screenshotSchedule(group)
-    imagePath=f"selenium/screenshots/{group}.png"
-    
-    data = {
-    'content': 'Hello, Discord!',
-    }
-    files = {'file': ('discrod/214.png', open('discord/214.png', 'rb'), 'image/png')}
-
-    response = requests.post(url, headers=headers, data=data,files=files)
-
-    if response.status_code == 200:
-        print('Message sent successfully!')
-    else:
-        print(f'Failed to send message. Status code: {response.status_code}, Response: {response.text}')
 

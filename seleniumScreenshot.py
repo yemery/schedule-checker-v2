@@ -19,6 +19,5 @@ def screenshotSchedule(group):
     driver.get_screenshot_as_file(path)
     driver.quit()
     
-# if __name__ == "__main__":
-#     screenshotSchedule(219)
+
     

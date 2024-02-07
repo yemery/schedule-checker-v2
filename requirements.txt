@@ -1,7 +1,7 @@
-pymongo
-python-dotenv
-undetected-chromedriver
-selenium
-requests
-beautifulsoup4
-deepdiff
+pymongo==4.5.0
+python-dotenv== 1.0.0
+undetected-chromedriver==3.5.2
+selenium==4.11.2
+requests==2.31.0
+beautifulsoup4==4.12.2
+deepdiff==6.7.1
