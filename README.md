@@ -12,6 +12,7 @@ The Schedule Checker project consists of several Python scripts that perform var
 - **[discordAlerts.py]**: Sends alerts to Discord channels when schedule changes are detected.
 - **[utils.py]**: Contains utility functions for scraping schedules and computing differences.
 - **[main.py]**: Entry point script to execute the schedule checking process.
+- **[rolesCreationAutomated.py]**:Adds role for each group fetched from db.
 
 ## Installation and Setup
 
@@ -47,7 +48,4 @@ To execute the schedule checker, run the `main.py` script:
 py main.py
 ```
 
-## Contributing
-
-Contributions to the Schedule Checker project are welcome! If you'd like to contribute, feel free to submit pull requests or open issues on the GitHub repository.
 

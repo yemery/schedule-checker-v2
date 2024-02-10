@@ -21,7 +21,7 @@ def getRoles():
 
     if response.status_code == 200:
         # print('Message sent successfully!',response.json())
-        return response.json()
+        return response.json() 
     else:
         # print(f'Failed to send message. Status code: {response.status_code}, Response: {response.text}')
         return None
