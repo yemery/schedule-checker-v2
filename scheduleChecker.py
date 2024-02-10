@@ -19,17 +19,8 @@ def scheduleChecker():
                 screenshotSchedule(groupName)
                 # think about adding message contains changes written ! later prb was the structure of dict returned
                 message=""
-                sendAlert(groupName,message)
-
-            
-        
-        
-       
-        
-            
-            
-            # if diffDictChecker!=None:
-            #     db.schedules.update_one({"groupeName": f"{groupName}"},{"$set": { "classes":scrapedSchedule }})
+                sendAlert(groupName,message)    
+                db.schedules.update_one({"groupeName": f"{groupName}"},{"$set": { "classes":scrapedSchedule }})
             
    
 

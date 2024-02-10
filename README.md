@@ -3,6 +3,7 @@
 ## Overview
 
 The Schedule Checker project consists of several Python scripts that perform various tasks such as scraping schedules, comparing them, taking screenshots, and sending alerts via Discord. Each script has its specific functionality contributing to the overall goal of the project.
+The main goal of this project is to automate schedule checking for NTIC Rabat , which lacks a system to inform its students about schedule changes, ensuring timely updates and alerts to students regarding any modifications,irrespective of the time.
 
 ## Scripts
 
