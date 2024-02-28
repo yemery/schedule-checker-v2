@@ -62,6 +62,7 @@ class Patcher(object):
         prefix = "undetected"
         self.user_multi_procs = user_multi_procs
 
+        self.is_old_chromedriver = version_main and version_main <= 114
         # Needs to be called before self.exe_name is accessed
         self._set_platform_name()
 
@@ -91,7 +92,6 @@ class Patcher(object):
             self.executable_path = executable_path
 
         # Set the correct repository to download the Chromedriver from
-        self.is_old_chromedriver = version_main and version_main <= 114
         if self.is_old_chromedriver:
             self.url_repo = "https://chromedriver.storage.googleapis.com"
         else:
@@ -112,28 +112,11 @@ class Patcher(object):
             self.platform_name = "linux64"
             self.exe_name %= ""
         if self.platform.endswith("darwin"):
-            self.platform_name = self._get_mac_platform_name()
+            if self.is_old_chromedriver:
+                self.platform_name = "mac64"
+            else:
+                self.platform_name = "mac-x64"
             self.exe_name %= ""
-
-    def _get_mac_platform_name(self):
-        """
-        The Mac platform name changes based on the architecture and Chromedriver version desired
-        """
-        platform_name = "mac"
-        is_arm_arch = any(["aarch64", "arm"] in platform.machine())
-
-        if self.is_old_chromedriver:
-            if is_arm_arch:
-                platform_name += "_arm64"
-            else:
-                platform_name += "64"
-        else:
-            if is_arm_arch:
-                platform_name += "-arm64"
-            else:
-                platform_name += "-x64"
-
-        return platform_name
 
     def auto(self, executable_path=None, force=False, version_main=None, _=None):
         """
@@ -297,7 +280,8 @@ class Patcher(object):
             download_url = "%s/%s/%s" % (self.url_repo, self.version_full.vstring, zip_name)
         else:
             zip_name = zip_name.replace("_", "-", 1)
-            download_url = "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/%s/%s/%s"
+            # download_url = "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/%s/%s/%s"
+            download_url = "https://storage.googleapis.com/chrome-for-testing-public/%s/%s/%s"
             download_url %= (self.version_full.vstring, self.platform_name, zip_name)
 
         logger.debug("downloading from %s" % download_url)

@@ -16,7 +16,7 @@ def sendAlert(group,message):
     imagePath=f"screenshots/{group}.png"
     
     data = {
-    'content': f"Attention <@&?>: \n The schedule has been updated. ",
+    'content': f"Attention <@&{message}>: \n The schedule has been updated. ",
     }
     files = {'file': (imagePath, open(imagePath, 'rb'), 'image/png')}
 

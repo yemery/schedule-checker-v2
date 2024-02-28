@@ -15,15 +15,13 @@ headers = {
     "Content-Type": "application/json",
 }
 
-
+db = conn_db()
 def getRoles():
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
-        # print('Message sent successfully!',response.json())
         return response.json() 
     else:
-        # print(f'Failed to send message. Status code: {response.status_code}, Response: {response.text}')
         return None
 
 
@@ -41,17 +39,28 @@ def addRole(groupName, color):
 
 
 def addAllRoles():
-    db = conn_db()
+    
     if db != None:
         groups = db.groups.find()
         for group in groups:
             addRole(group["value"], generateColor())
             time.sleep(10)
 
+def addRoleDb():
+    roles = getRoles()
+    if db is not None:
+        for role in roles[2:]:
+            db.groups.update_one(
+                {"value": role["name"]},
+                {"$set": {"roleID": role["id"]}}
+            )
 
+            
+            
+    
 if __name__ == "__main__":
 
     # getRoles()
     # print(generateRGBColor())
     # addRole("test",generateColor())
-    addAllRoles()
+    addRoleDb()
